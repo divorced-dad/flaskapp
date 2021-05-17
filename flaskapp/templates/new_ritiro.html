@@ -1,0 +1,56 @@
+{% extends "layout.html" %}
+{% block content %}
+<div class="content-section">
+    <form method="POST" action="">
+        {{ form.hidden_tag() }}  <!-- Adding a CSRF token (Cross Site Request Token) -->
+        <fieldset class="form-group">
+            <legend class="border-bottom mb-4">Ritiro Prodotto</legend>
+            <div class="form-group">
+                {{ form.nome.label(class="form-control-label") }}
+                {% if form.nome.errors %}
+                    {{ form.nome(class="form-control form-control-lg is-invalid") }}
+                    <div class="invalid-feedback">
+                        {% for error in form.nome.errors %}
+                            <span>{{ error }}</span>
+                        {% endfor %}
+                    </div>
+                {% else %}
+                    {{ form.nome(class="form-control form-control-lg") }}
+                {% endif %}
+            </div>
+            <div class="form-group">
+                {{ form.quantita.label(class="form-control-label") }}
+                {% if form.quantita.errors %}
+                    {{ form.quantita(class="form-control form-control-lg is-invalid") }}
+                    <div class="invalid-feedback">
+                        {% for error in form.quantita.errors %}
+                            <span>{{ error }}</span>
+                        {% endfor %}
+                    </div>
+                {% else %}
+                    {{ form.quantita(class="form-control form-control-lg") }}
+                {% endif %}
+            </div>
+            <div class="form-group">
+                {{ form.comune.label(class="form-control-label") }}
+                {% if form.comune.errors %}
+                    {{ form.comune(class="form-control form-control-lg is-invalid") }}
+                    <div class="invalid-feedback">
+                        {% for error in form.comune.errors %}
+                            <span>{{ error }}</span>
+                        {% endfor %}
+                    </div>
+                {% else %}
+                    {{ form.comune(class="form-control form-control-lg") }}
+                {% endif %}
+            </div>
+        </fieldset>
+        <div class="form-group">
+            {{ form.submit(class="btn btn-outline-info") }}
+        </div>
+        <!-- <small class="text-muted ml-2">
+            <a href="#">Forgot password?</a>
+        </small> -->
+    </form>
+</div>
+{% endblock content %}

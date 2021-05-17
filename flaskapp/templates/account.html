@@ -1,0 +1,119 @@
+{% extends "layout.html" %}
+{% block content %}
+    <div class="content-section">
+        <div class="media">
+          <div class="media-body">
+            <h2 class="account-heading">{{ current_user.nome }} {{ current_user.cognome }}</h2>
+            <p class="text-secondary">
+                Email: {{ current_user.email }} <br>
+                Ruolo: {{ current_user.ruolo }} <br>
+                Comune: {{ comune.nome }} <br>
+            </p>
+          </div>
+        </div>
+
+        <form method="POST" action="">
+            {{ form.hidden_tag() }}
+            <fieldset class="form-group">
+                <legend class="border-bottom mb-4">Dati account</legend>
+                <div class="form-group">
+                    {{ form.email.label(class="form-control-label") }}
+                    {% if form.email.errors %}
+                        {{ form.email(class="form-control form-control-lg is-invalid") }}
+                        <div class="invalid-feedback">
+                            {% for error in form.email.errors %}
+                                <span>{{ error }}</span>
+                            {% endfor %}
+                        </div>
+                    {% else %}
+                        {{ form.email(class="form-control form-control-lg") }}
+                    {% endif %}
+                </div>
+                <div class="form-group">
+                    {{ form.ruolo.label(class="form-control-label") }}
+                    {% if form.ruolo.errors %}
+                        {{ form.ruolo(class="form-control form-control-lg is-invalid") }}
+                        <div class="invalid-feedback">
+                            {% for error in form.ruolo.errors %}
+                                <span>{{ error }}</span>
+                            {% endfor %}
+                        </div>
+                    {% else %}
+                        {{ form.ruolo(class="form-control form-control-lg") }}
+                    {% endif %}
+                </div>
+                <div class="form-group">
+                    {{ form.comune_volontariato.label(class="form-control-label") }}
+                    {% if form.comune_volontariato.errors %}
+                        {{ form.comune_volontariato(class="form-control form-control-lg is-invalid") }}
+                        <div class="invalid-feedback">
+                            {% for error in form.comune_volontariato.errors %}
+                                <span>{{ error }}</span>
+                            {% endfor %}
+                        </div>
+                    {% else %}
+                        {{ form.comune_volontariato(class="form-control form-control-lg") }}
+                    {% endif %}
+                </div>
+                {% if current_user.ruolo == "Volontario" %}
+                    #da ABBELLIRE<br>
+                    {{ form.orario_inizio.label(class="form-control-label") }}
+                    {% if form.orario_inizio.errors %}
+                        {{ form.orario_inizio(class="form-control form-control-lg is-invalid") }}
+                        <div class="invalid-feedback">
+                            {% for error in form.orario_inizio.errors %}
+                                <span>{{ error }}</span>
+                            {% endfor %}
+                        </div>
+                    {% else %}
+                        {{ form.orario_inizio(class="form-control form-control-lg") }}
+                    {% endif %}
+                    {{ form.orario_fine.label(class="form-control-label") }}
+                    {% if form.orario_fine.errors %}
+                        {{ form.orario_fine(class="form-control form-control-lg is-invalid") }}
+                        <div class="invalid-feedback">
+                            {% for error in form.orario_fine.errors %}
+                                <span>{{ error }}</span>
+                            {% endfor %}
+                        </div>
+                    {% else %}
+                        {{ form.orario_fine(class="form-control form-control-lg") }}
+                    {% endif %}
+                    Giorni disponibili:<br>
+                    <div class="form-check">
+                        {{ form.lunedi(class="form-check-input") }}
+                        {{ form.lunedi.label(class="form-check-label") }}
+                    </div>
+                    <div class="form-check">
+                        {{ form.martedi(class="form-check-input") }}
+                        {{ form.martedi.label(class="form-check-label") }}
+                    </div>
+                    <div class="form-check">
+                        {{ form.mercoledi(class="form-check-input") }}
+                        {{ form.mercoledi.label(class="form-check-label") }}
+                    </div>
+                    <div class="form-check">
+                        {{ form.giovedi(class="form-check-input") }}
+                        {{ form.giovedi.label(class="form-check-label") }}
+                    </div>
+                    <div class="form-check">
+                        {{ form.venerdi(class="form-check-input") }}
+                        {{ form.venerdi.label(class="form-check-label") }}
+                    </div>
+                    <div class="form-check">
+                        {{ form.sabato(class="form-check-input") }}
+                        {{ form.sabato.label(class="form-check-label") }}
+                    </div>
+                    <div class="form-check">
+                        {{ form.domenica(class="form-check-input") }}
+                        {{ form.domenica.label(class="form-check-label") }}
+                    </div>
+                {% endif %}
+            </fieldset>
+            <div class="form-group">
+                {{ form.submit(class="btn btn-outline-info") }}
+            </div>
+        </form>
+
+      </div>
+{% endblock content %}

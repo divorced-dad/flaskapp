@@ -1,0 +1,33 @@
+{% extends "layout.html" %}
+    {% block content %}
+        <h1>Beni primari - Home</h1>
+        <p>hello</p>
+    {% for prodotto in prodotti %}
+        <article class="media content-section">
+            <div class="media-body">
+                <div class="article-metadata">
+                    <a class="mr-2" href="#">{{ prodotto.nome }}</a>
+                    <small class="text-muted">{{ prodotto.categoria }}</small>
+                </div>
+                <h2><a class="article-title" href="#">{{ prodotto.nome }}</a></h2>
+                <p class="article-content">
+                    Tipologia: {{ prodotto.tipologia }} 
+                    Quantita' Totale: {{ prodotto.quantita }}
+                    {% for comune_prodotto in comuni_prodotti %} <!-- questo blocco lascia spazi bianchi nell'html-->
+                        {% if comune_prodotto.prodotto_id == prodotto.id %}
+                            Comune: {{ comune_prodotto.comune_id }}
+                            Quantita': {{ comune_prodotto.quantita }}
+                        {% endif %}
+                    {% endfor %}
+                    {% for donazione in donazioni %} <!-- questo blocco lascia spazi bianchi nell'html-->
+                        {% if donazione.prodotto_id == prodotto.id %}
+                            Donatore: {{ utenti[donazione.utente_id - 1].email }}
+                            Quantita': {{ donazione.quantita }}
+                            Data Ora: {{ donazione.data_ora }}
+                        {% endif %}
+                    {% endfor %}
+                </p>
+            </div>
+        </article>
+    {% endfor %}
+{% endblock content %}
