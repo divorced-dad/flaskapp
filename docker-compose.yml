@@ -1,0 +1,27 @@
+version: '3.4'
+
+services:
+  flaskapp:
+    image: flaskapp
+    build: .
+    env_file: .env.dev
+    depends_on:
+      - db
+    ports:
+      - 5000:5000
+    volumes:
+      - ./flaskapp:/usr/src/app/app
+  
+  db:
+    image: postgres:latest
+    networks:
+      - default
+    ports:
+      - 5432:5432
+    restart: always
+    volumes:
+      - ./postgres-data:/var/lib/postgresql/data
+    env_file: .env.dev
+
+volumes:
+  postgres_data:

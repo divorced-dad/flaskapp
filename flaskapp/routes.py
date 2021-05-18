@@ -4,6 +4,7 @@ from flaskapp import app, db, bcrypt
 from flaskapp.forms import RegistrationForm, LoginForm, UpdateAccountForm, DonazioneForm, RitiroForm
 from flaskapp.models import Comune, Prodotto, Utente, Giorni_Disponibili, Comune_Prodotto, Donazione, Ritiro
 from flask_login import login_user, current_user, logout_user, login_required
+import sqlalchemy
 
 
 @app.route("/")
@@ -14,11 +15,11 @@ def index():
     donazioni = Donazione.query.all()
     utenti = Utente.query.all()
     return render_template("index.html", 
-                           prodotti=prodotti,
-                           comuni_prodotti=comuni_prodotti,
-                           donazioni=donazioni,
-                           utenti=utenti,
-                           title="Home")
+                        prodotti=prodotti,
+                        comuni_prodotti=comuni_prodotti,
+                        donazioni=donazioni,
+                        utenti=utenti,
+                        title="Home")
 
 
 @app.route("/about")

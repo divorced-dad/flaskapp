@@ -45,7 +45,7 @@ class UpdateAccountForm(FlaskForm):
     try:
         for comune in Comune.query.all():
             choices.append((comune.id, comune.nome))
-    except sqlalchemy.exc.ProgrammingError:
+    except sqlalchemy.exc.InternalError or sqlalchemy.exc.ProgrammingError:
         pass
         # print("Table 'beni_primari.comune' doesn't exist")
     comune_volontariato = SelectField('Comune volontariato', choices=choices)
@@ -95,7 +95,7 @@ class DonazioneForm(FlaskForm):
     try:
         for comune in Comune.query.all():
             choices.append((comune.id, comune.nome))
-    except sqlalchemy.exc.ProgrammingError:
+    except sqlalchemy.exc.InternalError or sqlalchemy.exc.ProgrammingError:
         pass
         # print("Table 'beni_primari.comune' doesn't exist")
     comune = SelectField('Comune di destinazione', choices=choices)
@@ -107,7 +107,7 @@ class RitiroForm(FlaskForm):
     try:
         for prodotto in Prodotto.query.all():
             choices.append((prodotto.id, prodotto.nome))
-    except sqlalchemy.exc.ProgrammingError:
+    except sqlalchemy.exc.InternalError or sqlalchemy.exc.ProgrammingError:
         pass
     nome = SelectField('Seleziona un prodotto', choices=choices)
     quantita = IntegerField('Quantita\'', validators=[DataRequired()])
@@ -115,7 +115,7 @@ class RitiroForm(FlaskForm):
     try:
         for comune in Comune.query.all():
             choices.append((comune.id, comune.nome))
-    except sqlalchemy.exc.ProgrammingError:
+    except sqlalchemy.exc.InternalError or sqlalchemy.exc.ProgrammingError:
         pass
         # print("Table 'beni_primari.comune' doesn't exist")
     comune = SelectField('Comune sede del prodotto', choices=choices)
