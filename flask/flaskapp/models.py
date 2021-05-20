@@ -113,17 +113,7 @@ class Giorni_Disponibili(db.Model):
         return f"Utente('{self.utente_id}', '{self.lunedi}', '{self.martedi}', '{self.mercoledi}', '{self.giovedi}', '{self.venerdi}', '{self.sabato}', '{self.domenica}')"
 
 
-db.drop_all()
-db.create_all()
 
-comune_1 = Comune(nome="Verona", cap="3700")
-db.session.add(comune_1)
-comune_2 = Comune(nome="Rovereto", cap="3900")
-db.session.add(comune_2)
-comune_3 = Comune(nome="Malcesine", cap="4000")
-db.session.add(comune_3)
-
-db.session.commit()
 
 '''
 drop database beni_primari;
