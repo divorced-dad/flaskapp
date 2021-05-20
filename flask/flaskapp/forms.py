@@ -75,9 +75,10 @@ class UpdateAccountForm(FlaskForm):
         print("aSSSSS")
         print(self.orario_inizio)
         print(type(self.orario_inizio))
-        if self.orario_fine.data < self.orario_inizio.data:
-            result = False
-            self.orario_fine.errors.append('L\'orario di fine deve essere successivo all\'orario d\'inizio.')
+        if self.orario_fine.data is not None and self.orario_inizio.data is not None:
+            if self.orario_fine.data < self.orario_inizio.data:
+                result = False
+                self.orario_fine.errors.append('L\'orario di fine deve essere successivo all\'orario d\'inizio.')
         return result
     
     # def validate_orario_fine_orario_inizio(self, orario_fine, orario_inizio):
@@ -119,4 +120,4 @@ class RitiroForm(FlaskForm):
         pass
         # print("Table 'beni_primari.comune' doesn't exist")
     comune = SelectField('Comune sede del prodotto', choices=choices)
-    submit = SubmitField('Dona')
+    submit = SubmitField('Ritira')

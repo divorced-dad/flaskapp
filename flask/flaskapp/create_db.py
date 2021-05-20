@@ -1,4 +1,6 @@
 from flaskapp import db
+from flaskapp.models import Comune, Prodotto, Utente, Giorni_Disponibili, Comune_Prodotto, Donazione, Ritiro
+
 
 def create():
     db.drop_all()
