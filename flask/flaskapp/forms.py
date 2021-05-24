@@ -128,3 +128,4 @@ class MailForm(FlaskForm):
                         validators=[DataRequired(), Email()])
     subject = StringField('Oggetto', validators=[DataRequired(), Length(min=1, max=50)])
     body = TextAreaField("Testo della domanda", validators=[DataRequired(), Length(min=2, max=500)])
+    submit = SubmitField('Invia')
