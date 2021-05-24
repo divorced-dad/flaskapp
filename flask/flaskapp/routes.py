@@ -1,9 +1,10 @@
 from datetime import datetime
 from flask import url_for, render_template, flash, redirect, request
 from flaskapp import app, db, bcrypt
-from flaskapp.forms import RegistrationForm, LoginForm, UpdateAccountForm, DonazioneForm, RitiroForm
+from flaskapp.forms import RegistrationForm, LoginForm, UpdateAccountForm, DonazioneForm, RitiroForm, MailForm
 from flaskapp.models import Comune, Prodotto, Utente, Giorni_Disponibili, Comune_Prodotto, Donazione, Ritiro
 from flask_login import login_user, current_user, logout_user, login_required
+from flask_mail import Message
 import sqlalchemy
 
 
@@ -177,6 +178,17 @@ def new_ritiro():
             flash("Ritiro prodotto effettuato!", "success")
             return redirect(url_for('index'))
     return render_template("new_ritiro.html", title="Nuova ritiro", form=form)
+
+
+@app.route("/mail")
+@login_required
+def mail():
+    form = MailForm()
+    if form.validate_on_submit():
+        mail.send_message(subject=form.subject.data,
+                        body=form.body.data,
+                        recipients='17771@studenti.marconiverona.edu.it')
+        flash("Mail inviata!", "success")
 
 
 

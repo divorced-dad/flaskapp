@@ -2,7 +2,7 @@ from flask.helpers import url_for
 from flask_wtf import FlaskForm
 import sqlalchemy
 from flask_login import current_user
-from wtforms import StringField, PasswordField, SubmitField, BooleanField, SelectField, IntegerField
+from wtforms import StringField, PasswordField, SubmitField, BooleanField, SelectField, IntegerField, TextAreaField
 from wtforms.validators import DataRequired, Length, Email, EqualTo, ValidationError
 from wtforms_components import TimeField
 from flaskapp.models import Comune, Prodotto, Utente, Giorni_Disponibili, Comune_Prodotto, Donazione, Ritiro
@@ -121,3 +121,10 @@ class RitiroForm(FlaskForm):
         # print("Table 'beni_primari.comune' doesn't exist")
     comune = SelectField('Comune sede del prodotto', choices=choices)
     submit = SubmitField('Ritira')
+
+
+class MailForm(FlaskForm):
+    email = StringField('Email',
+                        validators=[DataRequired(), Email()])
+    subject = StringField('Oggetto', validators=[DataRequired(), Length(min=1, max=50)])
+    body = TextAreaField("Testo della domanda", validators=[DataRequired(), Length(min=2, max=500)])
