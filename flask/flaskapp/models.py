@@ -113,7 +113,7 @@ class Giorni_Disponibili(db.Model):
         return f"Utente('{self.utente_id}', '{self.lunedi}', '{self.martedi}', '{self.mercoledi}', '{self.giovedi}', '{self.venerdi}', '{self.sabato}', '{self.domenica}')"
 
 
-db.drop_all()
+# db.drop_all()
 db.create_all()
 
 comune_1 = Comune(nome="Verona", cap="3700")

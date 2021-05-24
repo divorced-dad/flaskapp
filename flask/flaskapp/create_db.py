@@ -3,7 +3,7 @@ from flaskapp.models import Comune, Prodotto, Utente, Giorni_Disponibili, Comune
 
 
 def create():
-    db.drop_all()
+    # db.drop_all()
     db.create_all()
 
     comune_1 = Comune(nome="Verona", cap="3700")
